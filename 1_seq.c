@@ -8,7 +8,6 @@ void main ()
 	step = 1.0/(double) num_steps;
 	double start = omp_get_wtime();
 	double sum,pi;
-#pragma omp parallel
 	{
 		
 	int i; double x;
@@ -18,10 +17,7 @@ void main ()
 	for (i=id;i< num_steps; i+=size){
 		
 		x = (i+0.5)*step;
-#pragma omp critical
-		{
 		sum = sum + 4.0/(1.0+x*x);
-		}
 		printf("ID: %d,x:%f,sum:%f\n",id,x,sum);
 		
 		
